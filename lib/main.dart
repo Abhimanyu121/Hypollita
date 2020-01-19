@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hypollita/notificationList.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'tabs.dart';
 import 'prescriptionTab.dart';
+import 'reportList.dart';
 void main() => runApp(HypollitaState());
 class HypollitaState extends StatefulWidget{
   @override
@@ -48,7 +50,7 @@ class HypollitaUi extends State<HypollitaState> {
           parallaxOffset: 1.0,
         borderRadius: BorderRadius.only(topLeft: Radius.circular(18.0), topRight: Radius.circular(18.0)),
         panel: Center(
-          child: Text("This is the sliding Widget"),
+          child: NotificationsList(),
         ),
         collapsed: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,14 +61,14 @@ class HypollitaUi extends State<HypollitaState> {
           ],
         ),
         body: CupertinoPageScaffold(
-          backgroundColor: Color(0xFFEEF1F3),
+          backgroundColor: Color(0xFF162A49),
           navigationBar: CupertinoNavigationBar(
-            backgroundColor: Color(0xFFFEFEFE),
-            trailing: Text("Avatar") ,
+            //backgroundColor: Color(0xFFFEFEFE),
+            trailing: Text("Logout") ,
             transitionBetweenRoutes: true,
             automaticallyImplyLeading: true,
             automaticallyImplyMiddle: true,
-            middle: Text("Hero"),
+            middle: Text("Medifier"),
             border: Border(top:BorderSide.none, bottom:BorderSide.none, left : BorderSide.none, right:  BorderSide.none),
           ),
           resizeToAvoidBottomInset: true,
@@ -74,7 +76,7 @@ class HypollitaUi extends State<HypollitaState> {
             child: Center(child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                Center(child: tab1?prescriptionTab:Text("This is the Widget behind the sliding panel")),
+                Center(child: tab1?PrescriptionTab():tab2?ReportList():ReportList()),
                 SizedBox(height: 5,)
               ],
             )),

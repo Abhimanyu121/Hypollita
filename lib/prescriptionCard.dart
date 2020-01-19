@@ -3,15 +3,17 @@ import 'dart:math'as math;
 class PrescriptionCard extends StatelessWidget {
   final double offset;
   final String name; //<-- title of the event
-  final String date; //<-- date of the event
+  final String dose ;
+  final String meal ;//<-- date of the event
   final String assetLink;//<-- name of the image to be displayed
 
   const PrescriptionCard({
     Key key,
     @required this.name,
-    @required this.date,
+    @required this.dose,
     @required this.assetLink,
     @required this.offset,
+    @required this.meal
   }) : super(key: key);
 
   @override
@@ -39,7 +41,8 @@ class PrescriptionCard extends StatelessWidget {
             Expanded(
               child: CardContent( //<--replace the Container with CardContent
                 name: name,
-                date: date,
+                meal: meal,
+                dose: dose,
                 offset: gauss,
               ),
             ),
@@ -51,9 +54,10 @@ class PrescriptionCard extends StatelessWidget {
 }
 class CardContent extends StatelessWidget {
   final String name;
-  final String date;
+  final String dose;
+  final String meal;
   final double offset;
-  const CardContent({Key key, @required this.name, @required this.date, @required this.offset})
+  const CardContent({Key key, @required this.name, @required this.dose,@required this.meal, @required this.offset})
       : super(key: key);
 
   @override
@@ -66,7 +70,9 @@ class CardContent extends StatelessWidget {
 
           Transform.translate(offset:Offset(8 * offset, 0), child: Text(name, style: TextStyle(fontSize: 20))),
           SizedBox(height: 8),
-          Transform.translate(offset:Offset(32 * offset, 0), child: Text(date, style: TextStyle(color: Colors.grey))),
+          Transform.translate(offset:Offset(32 * offset, 0), child: Text(dose +(" Times a day"), style: TextStyle(color: Colors.grey))),
+          SizedBox(height: 8),
+          Transform.translate(offset:Offset(32 * offset, 0), child: Text(meal +(" Meal"), style: TextStyle(color: Colors.grey))),
           Spacer(),
           Row(
             children: <Widget>[
@@ -74,7 +80,7 @@ class CardContent extends StatelessWidget {
                 offset:Offset(48 * offset, 0),
                 child: RaisedButton(
                   color: Color(0xFF162A49),
-                  child: Text('Reserve'),
+                  child: Text('Order'),
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(32),
@@ -86,7 +92,7 @@ class CardContent extends StatelessWidget {
               Transform.translate(
                 offset:Offset(32 * offset, 0),
                 child: Text(
-                  '0.00 \$',
+                  '',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
